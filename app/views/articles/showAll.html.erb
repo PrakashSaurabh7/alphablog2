@@ -115,6 +115,7 @@
     <table>
       <thead>
         <tr>
+          <th>By User</th>
           <th>Title</th>
           <th>Description</th>
           <th>Actions</th>
@@ -124,6 +125,7 @@
       <tbody>
         <% @articles.each do |article| %>
           <tr>
+            <td><%= article.user.username if article.user%></td>
             <td><%= article.title %></td>
             <td><%= article.description %></td>
             <td>
