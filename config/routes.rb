@@ -10,5 +10,7 @@ Rails.application.routes.draw do
 
   # get "signup", to: "users#new"
   root "users#new"
-  post "user", to: "users#create"
+  post "users/add", to: "users#create"
+  get "users/edit/:id" => "users#edit"
+  patch "users/update/:id" => "users#update"
 end

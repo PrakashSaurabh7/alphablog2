@@ -113,7 +113,7 @@
 
 <body>
   <div class="form-container">
-    <h1>SignUp for AlphaBlog2</h1>
+    <h1>Update for <%= @user.username%></h1>
 
     <% if @user.errors.any? %>
       <div class="error-messages">
@@ -126,7 +126,7 @@
       </div>
     <% end %>
 
-    <%= form_with model: @user, url: "/users/add", local: true, data: { turbo: false } do |f| %>
+    <%= form_with model: @user, url: "/users/update/#{@user.id}", local: true, data: { turbo: false } do |f| %>
       <p>
         <%= f.label :Username %>
         <%= f.text_field :username %>
@@ -140,7 +140,8 @@
         <%= f.password_field :password %>
       </p>
       <div class="button-group">
-        <%= f.submit "SignUp" %>
+        <%# <%= f.submit(@user.new_record? ? "Sign Up" : "Update") %>x
+        <%= f.submit "Update" %>
         <%= link_to "Cancel", "/", class: "cancel-button" %>
       </div>
     <% end %>
