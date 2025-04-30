@@ -37,7 +37,10 @@
       color: #555;
     }
 
-    input[type="text"], textarea {
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea {
       width: 100%;
       padding: 10px;
       margin-bottom: 20px;
@@ -45,6 +48,16 @@
       border-radius: 5px;
       font-size: 16px;
       box-sizing: border-box;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    textarea:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+      outline: none;
     }
 
     .button-group {
@@ -73,7 +86,6 @@
       background-color: #0056b3;
     }
 
-    /* Error message styles */
     .error-messages {
       background-color: #f8d7da;
       color: #721c24;
@@ -101,31 +113,35 @@
 
 <body>
   <div class="form-container">
-    <h1>New Article</h1>
+    <h1>SignUp for AlphaBlog2</h1>
 
-    <% if @article.errors.any? %>
+    <% if @user.errors.any? %>
       <div class="error-messages">
         <h2>There are the following warnings:</h2>
         <ul>
-          <% @article.errors.full_messages.each do |msg| %>
+          <% @user.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
           <% end %>
         </ul>
       </div>
     <% end %>
 
-    <%= form_with model: @article, url: "/update/#{@article.id}", local: true, data: { turbo: false }, method: :patch do |f| %>
+    <%= form_with model: @user, url: "/user", local: true, data: { turbo: false } do |f| %>
       <p>
-        <%= f.label :Title %>
-        <%= f.text_field :title %>
+        <%= f.label :Username %>
+        <%= f.text_field :username %>
       </p>
       <p>
-        <%= f.label :Description %>
-        <%= f.text_area :description, rows: 5 %>
+        <%= f.label :Email %>
+        <%= f.email_field :email %>
+      </p>
+      <p>
+        <%= f.label :Password %>
+        <%= f.password_field :password %>
       </p>
       <div class="button-group">
-        <%= f.submit "Update Article" %>
-        <%= link_to "Cancel", "/showAll", class: "cancel-button" %>
+        <%= f.submit "SignUp" %>
+        <%= link_to "Cancel", "/", class: "cancel-button" %>
       </div>
     <% end %>
   </div>
