@@ -30,6 +30,10 @@ class UsersController < ApplicationController
       @article = @user.articles
     end
 
+    def showAll
+      @users = User.all
+    end
+
     private
     def user_params
       params.require(:user).permit(:username, :email, :password)

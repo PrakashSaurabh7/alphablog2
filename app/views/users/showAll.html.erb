@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>All Articles</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 40px;
+    }
+
+    .user-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .user-header {
+      font-size: 22px;
+      font-weight: bold;
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+
+    .user-body {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .user-footer {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .show-button, .edit-button {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      text-decoration: none;
+      color: white;
+      transition: background-color 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .show-button {
+      background-color: #28a745;
+    }
+
+    .show-button:hover {
+      background-color: #218838;
+    }
+
+    .edit-button {
+      background-color: #007bff;
+    }
+
+    .edit-button:hover {
+      background-color: #0056b3;
+    }
+
+    /* ========== Responsive Styles for Small Screens ========== */
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 10px;
+      }
+
+      .user-card {
+        padding: 15px;
+      }
+
+      .user-header {
+        font-size: 20px;
+      }
+
+      .user-body {
+        font-size: 15px;
+      }
+
+      .user-footer {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .show-button, .edit-button {
+        font-size: 16px;
+        width: auto; /* Take only needed width */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>All Users of Alpha Blog 2</h1>
+
+    <% @users.each do |user| %>
+      <div class="user-card">
+        <div class="user-header"><%= user.username %></div>
+        <div class="user-body"><%= user.articles.count %> articles</div>
+        <div class="user-footer">
+          <%= link_to "View Profile", "users/showById/#{user.id}", class: "show-button" %>
+          <%= link_to "Edit Profile", "users/edit/#{user.id}", class: "edit-button" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</body>
+</html>
