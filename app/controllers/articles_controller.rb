@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(params.require(:article).permit(:title, :description))
     if @article.save
       flash[:notice] = "Article created successfully"
-      redirect_to "/"
+      redirect_to "/showAll"
     else
       render "new"
     end
@@ -24,7 +24,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     if @article.update(params.require(:article).permit(:title, :description))
       flash[:notice] = "Article updated successfully"
-      redirect_to "/"
+      redirect_to "/showAll"
     else
       render "edit"
     end
@@ -33,7 +33,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     if @article.destroy
       flash[:notice] = "Article deleted successfully"
-      redirect_to "/"
+      redirect_to "/showAll"
     end
   end
 end
