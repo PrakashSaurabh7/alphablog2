@@ -108,12 +108,23 @@
     form {
       display: inline;
     }
+
+    .center-button {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
   </style>
 </head>
 
 <body>
   <div class="article-container">
     <h1>Show articles related to <%= @user.username %></h1>
+
+    <div class="center-button">
+      <%= link_to "Edit #{@user.username}'s Profile", "/users/edit/#{@user.id}", class: 'btn btn-edit' %>
+    </div>
 
     <% if @article.any? %>
       <% @article.each do |article| %>
